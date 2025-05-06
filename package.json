@@ -1,0 +1,46 @@
+{
+  "name": "news_explorer_project-backend",
+  "version": "1.0.0",
+  "description": "News Explorer Project Back End",
+  "main": "app.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "start": "node app.ts",
+    "dev": "node --watch app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elizarrarazeligio/news_explorer_project-backend.git"
+  },
+  "keywords": [
+    "Backend",
+    "News",
+    "Explorer"
+  ],
+  "author": "Eligio Elizarraraz Molina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elizarrarazeligio/news_explorer_project-backend/issues"
+  },
+  "homepage": "https://github.com/elizarrarazeligio/news_explorer_project-backend#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "celebrate": "^15.0.3",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "winston": "^3.17.0"
+  }
+}
