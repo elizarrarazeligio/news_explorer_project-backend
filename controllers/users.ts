@@ -1,6 +1,6 @@
 import { NextFunction } from "express";
 import User from "../models/user";
-import NotFoundError from "errors/not-found-err";
+import NotFoundError from "../errors/not-found-err";
 
 // ===== GET - Obtener TODOS los usuarios ===========================
 export const getUsers = (_req: any, res: any, next: NextFunction) => {

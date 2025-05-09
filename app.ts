@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Middlewares importados
+import auth from "./middlewares/auth";
 import errorHandler from "./middlewares/errors";
 
 // Rutas importadas
@@ -20,6 +21,9 @@ app.use(bodyParser.json());
 // Rutas sin autenticación
 app.post("/signin");
 app.post("/signup");
+
+// Middleware para autenticación de usuarios
+app.use(auth);
 
 // Rutas que requieren autenticación
 app.use("/users", users);
