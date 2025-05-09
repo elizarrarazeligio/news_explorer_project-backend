@@ -6,8 +6,8 @@ import {
 } from "../controllers/articles";
 const articles = Router();
 
-articles.get("/:userId", getArticles);
-articles.post("/:userId", postArticle);
-articles.delete("/:userId/:articleId", deleteArticle);
+articles.get("/", getArticles);
+articles.post("/", postArticle);
+articles.delete("/:articleId", deleteArticle);
 
 export default articles;
