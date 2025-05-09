@@ -4,7 +4,10 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Rutas exportadas
+// Middlewares importados
+import errorHandler from "./middlewares/errors";
+
+// Rutas importadas
 import users from "./routes/users";
 import articles from "./routes/articles";
 
@@ -21,6 +24,9 @@ app.post("/signup");
 // Rutas que requieren autenticación
 app.use("/users", users);
 app.use("/news", articles);
+
+// Middleware para manejo de errores
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
