@@ -14,7 +14,7 @@ export const getUsers = (_req: any, res: any, next: NextFunction) => {
 
 // ===== GET - Obtener usuario con sesión actual ====================
 export const getCurrentUser = (req: any, res: any, next: NextFunction) => {
-  const { userId } = req.user._id;
+  const userId = req.user._id;
 
   User.findById(userId)
     .orFail(() => {

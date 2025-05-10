@@ -5,7 +5,7 @@ import { NextFunction } from "express";
 
 // ===== GET - Obtener artículos por usuario ========================
 export const getArticles = (req: any, res: any, next: NextFunction) => {
-  const { userId } = req.user._id;
+  const userId = req.user._id;
   Article.find({ owner: userId })
     .orFail(() => {
       throw new NotFoundError("Sin artículos disponibles");
@@ -18,7 +18,7 @@ export const getArticles = (req: any, res: any, next: NextFunction) => {
 
 // ===== POST - Crear nuevo artículo ================================
 export const postArticle = (req: any, res: any, next: NextFunction) => {
-  const { userId } = req.user._id;
+  const userId = req.user._id;
   const { keyword, title, description, publishedAt, source, url, urlToImage } =
     req.body;
 
