@@ -8,6 +8,9 @@ dotenv.config();
 import auth from "./middlewares/auth";
 import errorHandler from "./middlewares/errors";
 
+// Controladores de autenticación importados
+import { userLogin, userRegister } from "./controllers/auth";
+
 // Rutas importadas
 import users from "./routes/users";
 import articles from "./routes/articles";
@@ -19,15 +22,15 @@ mongoose.connect("mongodb://localhost:27017/newsdb");
 app.use(bodyParser.json());
 
 // Rutas sin autenticación
-app.post("/signin");
-app.post("/signup");
+app.post("/signin", userLogin);
+app.post("/signup", userRegister);
 
 // Middleware para autenticación de usuarios
 app.use(auth);
 
 // Rutas que requieren autenticación
 app.use("/users", users);
-app.use("/news", articles);
+app.use("/articles", articles);
 
 // Middleware para manejo de errores
 app.use(errorHandler);
