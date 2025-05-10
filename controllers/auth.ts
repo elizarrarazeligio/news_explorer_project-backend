@@ -3,6 +3,7 @@ import User from "../models/user";
 import BadRequestError from "../errors/bad-request-err";
 import jwt, { Secret } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+const { TS_NODE_DEV, JWT_SECRET } = process.env;
 
 // ===== POST - Login  de usuario ===================================
 export const userLogin = (req: any, res: any, next: NextFunction) => {
@@ -12,7 +13,7 @@ export const userLogin = (req: any, res: any, next: NextFunction) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        process.env.JWT_SECRET as Secret,
+        TS_NODE_DEV ? "JWT_SECRET" : (JWT_SECRET as Secret),
         {
           expiresIn: "1d",
         }
