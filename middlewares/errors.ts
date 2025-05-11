@@ -1,5 +1,13 @@
+import { Request, Response, NextFunction } from "express";
+import { CustomError } from "../types/errors";
+
 // ===== Manejo centralizado de errores =============================
-export default (err: any, _req: any, res: any, _next: any) => {
+export default (
+  err: CustomError,
+  _req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({
     message:

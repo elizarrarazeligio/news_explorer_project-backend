@@ -1,6 +1,7 @@
+import { Article } from "../types/articles";
 import mongoose from "mongoose";
 
-const articleSchema = new mongoose.Schema({
+const articleSchema = new mongoose.Schema<Article>({
   keyword: {
     type: String,
     maxLength: 50,
@@ -48,4 +49,4 @@ const articleSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("article", articleSchema);
+export default mongoose.model<Article>("article", articleSchema);

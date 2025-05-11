@@ -1,9 +1,9 @@
-import { NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import User from "../models/user";
 import NotFoundError from "../errors/not-found-err";
 
 // ===== GET - Obtener TODOS los usuarios ===========================
-export const getUsers = (_req: any, res: any, next: NextFunction) => {
+export const getUsers = (_req: Request, res: Response, next: NextFunction) => {
   User.find({})
     .orFail(() => {
       throw new NotFoundError("No se encontró ningún usuario.");
@@ -13,8 +13,12 @@ export const getUsers = (_req: any, res: any, next: NextFunction) => {
 };
 
 // ===== GET - Obtener usuario con sesión actual ====================
-export const getCurrentUser = (req: any, res: any, next: NextFunction) => {
-  const userId = req.user._id;
+export const getCurrentUser = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const userId = req.user;
 
   User.findById(userId)
     .orFail(() => {

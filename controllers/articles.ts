@@ -1,10 +1,14 @@
 import Article from "../models/article";
 import NotFoundError from "../errors/not-found-err";
 import BadRequestError from "../errors/bad-request-err";
-import { NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
 // ===== GET - Obtener artículos por usuario ========================
-export const getArticles = (req: any, res: any, next: NextFunction) => {
+export const getArticles = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userId = req.user._id;
   Article.find({ owner: userId })
     .orFail(() => {
@@ -17,7 +21,11 @@ export const getArticles = (req: any, res: any, next: NextFunction) => {
 };
 
 // ===== POST - Crear nuevo artículo ================================
-export const postArticle = (req: any, res: any, next: NextFunction) => {
+export const postArticle = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const userId = req.user._id;
   const { keyword, title, description, publishedAt, source, url, urlToImage } =
     req.body;
@@ -42,7 +50,11 @@ export const postArticle = (req: any, res: any, next: NextFunction) => {
 };
 
 // ===== DELETE - Borrar artículo por ID ============================
-export const deleteArticle = (req: any, res: any, next: NextFunction) => {
+export const deleteArticle = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { articleId } = req.params;
 
   Article.findByIdAndDelete(articleId)
