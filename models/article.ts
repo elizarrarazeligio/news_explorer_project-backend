@@ -1,4 +1,5 @@
 import { Article } from "../types/articles";
+import { isValidUrl } from "../utils/utils";
 import mongoose from "mongoose";
 
 const articleSchema = new mongoose.Schema<Article>({
@@ -27,18 +28,14 @@ const articleSchema = new mongoose.Schema<Article>({
     type: String,
     required: true,
     validate: {
-      validator(value: string) {
-        return /https?:\/\/(w{3})?\.?.+/.test(value);
-      },
+      validator: isValidUrl,
       message: "Formato de URL inválido.",
     },
   },
   urlToImage: {
     type: String,
     validate: {
-      validator(value: string) {
-        return /https?:\/\/(w{3})?\.?.+/.test(value);
-      },
+      validator: isValidUrl,
       message: "Formato de URL inválido.",
     },
   },
