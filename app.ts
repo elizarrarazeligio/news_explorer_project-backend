@@ -7,6 +7,8 @@ dotenv.config();
 // Middlewares importados
 import auth from "./middlewares/auth";
 import errorHandler from "./middlewares/errors";
+import { registerValidation } from "./utils/celebrate";
+import { errors } from "celebrate";
 
 // Controladores de autenticación importados
 import { userLogin, userRegister } from "./controllers/auth";
@@ -23,7 +25,7 @@ app.use(bodyParser.json());
 
 // Rutas sin autenticación
 app.post("/signin", userLogin);
-app.post("/signup", userRegister);
+app.post("/signup", registerValidation, userRegister);
 
 // Middleware para autenticación de usuarios
 app.use(auth);
@@ -32,7 +34,8 @@ app.use(auth);
 app.use("/users", users);
 app.use("/articles", articles);
 
-// Middleware para manejo de errores
+// Middlewares para manejo de errores
+app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {

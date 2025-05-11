@@ -4,10 +4,14 @@ import {
   postArticle,
   deleteArticle,
 } from "../controllers/articles";
+import {
+  postArticleValidation,
+  deleteArticleValidation,
+} from "../utils/celebrate";
 const articles = Router();
 
 articles.get("/", getArticles);
-articles.post("/", postArticle);
-articles.delete("/:articleId", deleteArticle);
+articles.post("/", postArticleValidation, postArticle);
+articles.delete("/:articleId", deleteArticleValidation, deleteArticle);
 
 export default articles;
