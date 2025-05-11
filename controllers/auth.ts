@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../models/user";
 import BadRequestError from "../errors/bad-request-err";
+import ConflictError from "../errors/conflict-err";
 import jwt, { Secret } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 const { TS_NODE_DEV, JWT_SECRET } = process.env;
@@ -40,6 +41,10 @@ export const userRegister = (
   bcrypt.hash(password, 10).then((hashedPassword) => {
     User.create({ name, email, password: hashedPassword })
       .then((user) => res.status(201).send({ status: "success", data: user }))
-      .catch(next);
+      .catch((err) => {
+        if (err.name === "MongoServerError" && err.code === 11000)
+          return next(new ConflictError("Ya existe un usuario con ese email"));
+        next(err);
+      });
   });
 };
