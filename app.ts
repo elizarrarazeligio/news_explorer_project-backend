@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -21,13 +22,15 @@ import users from "./routes/users";
 import articles from "./routes/articles";
 
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT = 3005 } = process.env;
+const allowedOrigins = ["http://localhost:3000"];
 mongoose.connect("mongodb://localhost:27017/newsdb");
 
 app.use(bodyParser.json());
+app.use(cors({ origin: allowedOrigins }));
 
 // Rutas sin autenticación
-app.use(requestLogger);         // Registro de solicitudes
+app.use(requestLogger); // Registro de solicitudes
 app.post("/signin", userLogin);
 app.post("/signup", registerValidation, userRegister);
 
@@ -39,7 +42,7 @@ app.use("/users", users);
 app.use("/articles", articles);
 
 // Middlewares para manejo de errores
-app.use(errorLogger);           // Registro de errores
+app.use(errorLogger); // Registro de errores
 app.use(errors());
 app.use(errorHandler);
 
