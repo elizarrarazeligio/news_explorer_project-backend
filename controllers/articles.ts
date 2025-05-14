@@ -8,7 +8,7 @@ export const getArticles = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const userId = req.user._id;
   Article.find({ owner: userId })
     .orFail(() => {
@@ -25,7 +25,7 @@ export const postArticle = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const userId = req.user._id;
   const { keyword, title, description, publishedAt, source, url, urlToImage } =
     req.body;
@@ -54,7 +54,7 @@ export const deleteArticle = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const { articleId } = req.params;
 
   Article.findByIdAndDelete(articleId)

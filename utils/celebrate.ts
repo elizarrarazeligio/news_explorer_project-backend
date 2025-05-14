@@ -10,7 +10,10 @@ export const registerValidation = celebrate({
 });
 
 // ===== Validación para URL ========================================
-const isValidUrl = (value: string, helpers: Joi.CustomHelpers<string>) => {
+const isValidUrl = (
+  value: string,
+  helpers: Joi.CustomHelpers<string>
+): string | Object => {
   const valid = /https?:\/\/(w{3})?\.?.+/.test(value);
   return valid ? value : helpers.message({ custom: "Formato de URL inválido" });
 };

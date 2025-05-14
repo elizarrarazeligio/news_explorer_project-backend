@@ -7,7 +7,11 @@ import bcrypt from "bcryptjs";
 const { TS_NODE_DEV, JWT_SECRET } = process.env;
 
 // ===== POST - Login  de usuario ===================================
-export const userLogin = (req: Request, res: Response, next: NextFunction) => {
+export const userLogin = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { email, password } = req.body;
 
   User.findUserByCredentials(email, password)
@@ -32,7 +36,7 @@ export const userRegister = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password)

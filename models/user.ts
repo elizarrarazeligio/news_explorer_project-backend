@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema<IUser, UserModel>({
 userSchema.statics.findUserByCredentials = async function findUserByCredentials(
   email: string,
   password: string
-) {
+): Promise<IUser | BadRequestError> {
   const user = await this.findOne({ email }).select("+password");
   if (!user)
     return Promise.reject(new BadRequestError("Incorrect password or email"));

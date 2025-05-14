@@ -3,7 +3,11 @@ import User from "../models/user";
 import NotFoundError from "../errors/not-found-err";
 
 // ===== GET - Obtener TODOS los usuarios ===========================
-export const getUsers = (_req: Request, res: Response, next: NextFunction) => {
+export const getUsers = (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   User.find({})
     .orFail(() => {
       throw new NotFoundError("No se encontró ningún usuario.");
@@ -17,7 +21,7 @@ export const getCurrentUser = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const userId = req.user;
 
   User.findById(userId)
