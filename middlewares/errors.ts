@@ -8,8 +8,10 @@ export default (
   res: Response,
   _next: NextFunction
 ) => {
+  console.log(err);
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({
+    status: "error",
     message:
       statusCode === 500
         ? "Error desconocido, contacte a un administrador"

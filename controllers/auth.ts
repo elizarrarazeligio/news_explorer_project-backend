@@ -44,7 +44,11 @@ export const userRegister = (
 
   bcrypt.hash(password, 10).then((hashedPassword) => {
     User.create({ name, email, password: hashedPassword })
-      .then((user) => res.status(201).send({ status: "success", data: user }))
+      .then(() =>
+        res
+          .status(201)
+          .send({ status: "success", message: "Registro exitoso!" })
+      )
       .catch((err) => {
         if (err.name === "MongoServerError" && err.code === 11000)
           return next(new ConflictError("Ya existe un usuario con ese email"));

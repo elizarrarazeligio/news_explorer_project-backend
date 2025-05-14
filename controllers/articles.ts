@@ -44,7 +44,11 @@ export const postArticle = (
     owner: userId,
   })
     .then((article) =>
-      res.status(201).send({ status: "success", data: article })
+      res.status(201).send({
+        status: "success",
+        message: "Artículo guardado",
+        data: article,
+      })
     )
     .catch(next);
 };
@@ -62,7 +66,13 @@ export const deleteArticle = (
       throw new NotFoundError(`No se encontró el artículo con ID ${articleId}`);
     })
     .then((article) =>
-      res.status(200).send({ status: "success", data: article })
+      res
+        .status(200)
+        .send({
+          status: "success",
+          message: "Artículo removido",
+          data: article,
+        })
     )
     .catch(next);
 };
