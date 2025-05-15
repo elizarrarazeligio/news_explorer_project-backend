@@ -12,7 +12,13 @@ export const getUsers = (
     .orFail(() => {
       throw new NotFoundError("No se encontró ningún usuario.");
     })
-    .then((users) => res.send({ status: "success", data: users }))
+    .then((users) =>
+      res.send({
+        status: "success",
+        message: "Usuarios encontrados",
+        data: users,
+      })
+    )
     .catch(next);
 };
 
@@ -28,6 +34,12 @@ export const getCurrentUser = (
     .orFail(() => {
       throw new NotFoundError("No hay una sesión iniciada.");
     })
-    .then((user) => res.send({ status: "success", data: user }))
+    .then((user) =>
+      res.send({
+        status: "success",
+        message: "Usuario actual autenticado",
+        data: user,
+      })
+    )
     .catch(next);
 };

@@ -24,9 +24,12 @@ export const userLogin = (
         }
       );
 
-      res
-        .status(200)
-        .send({ status: "success", message: "Autenticación exitosa!", token });
+      res.status(200).send({
+        status: "success",
+        message: "Autenticación exitosa!",
+        data: user,
+        token,
+      });
     })
     .catch(next);
 };

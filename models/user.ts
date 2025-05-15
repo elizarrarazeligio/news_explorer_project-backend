@@ -28,6 +28,13 @@ const userSchema = new mongoose.Schema<IUser, UserModel>({
   },
 });
 
+userSchema.set("toJSON", {
+  transform(_doc, ret) {
+    delete ret.password;
+    return ret;
+  },
+});
+
 userSchema.statics.findUserByCredentials = async function findUserByCredentials(
   email: string,
   password: string
