@@ -12,6 +12,7 @@ export const getArticles = (
 ): void => {
   const userId = req.user._id;
   Article.find({ owner: userId })
+    .sort({ createdAt: -1 })
     .orFail(() => {
       throw new NotFoundError("Sin artículos disponibles");
     })
