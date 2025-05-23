@@ -1,6 +1,7 @@
 import Article from "../models/article";
 import NotFoundError from "../errors/not-found-err";
 import BadRequestError from "../errors/bad-request-err";
+import ConflictError from "../errors/conflict-err";
 import { Request, Response, NextFunction } from "express";
 
 // ===== GET - Obtener artículos por usuario ========================
@@ -50,7 +51,11 @@ export const postArticle = (
         data: article,
       })
     )
-    .catch(next);
+    .catch((err) => {
+      if (err.name === "MongoServerError" && err.code === 11000)
+        return next(new ConflictError("Ya guardaste este artículo."));
+      next(err);
+    });
 };
 
 // ===== DELETE - Borrar artículo por ID ============================
@@ -66,13 +71,11 @@ export const deleteArticle = (
       throw new NotFoundError(`No se encontró el artículo con ID ${articleId}`);
     })
     .then((article) =>
-      res
-        .status(200)
-        .send({
-          status: "success",
-          message: "Artículo removido",
-          data: article,
-        })
+      res.status(200).send({
+        status: "success",
+        message: "Artículo removido",
+        data: article,
+      })
     )
     .catch(next);
 };
