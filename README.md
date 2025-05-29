@@ -21,20 +21,19 @@ Entre las principales características del proyecto se encuentran:<br>
 ✅ Tipado de variables y funciones con TypeScript.<br>
 ✅ Uso de Mongoose para facilitar consultas a base de datos en Mongo.<br>
 
-<br><br>
+<br>
 
 Las tecnologías utilizadas dentro de este proyecto son:<br>
 
-🔹**Node.js** – Entorno de ejecución para JavaScript en el servidor.
-🔹**TypeScript** – Tipado estático para una base de código más robusta.
-🔹**Express.js** – Framework minimalista para construir APIs REST.
-🔹**MongoDB** – Base de datos NoSQL para persistencia de datos.
-🔹**Mongoose** – ODM para modelar objetos MongoDB en Node.js.
-🔹**JWT (JSON Web Tokens)** – Autenticación basada en tokens.
-🔹**Celebrate (Joi)** – Validación de esquemas en rutas HTTP.
-🔹**Winston** – Sistema de logging configurable y extensible.
+🔹**Node.js** – Entorno de ejecución para JavaScript en el servidor.<br>
+🔹**TypeScript** – Tipado estático para una base de código más robusta.<br>
+🔹**Express.js** – Framework minimalista para construir APIs REST.<br>
+🔹**MongoDB** – Base de datos NoSQL para persistencia de datos.<br>
+🔹**Mongoose** – ODM para modelar objetos MongoDB en Node.js.<br>
+🔹**JWT (JSON Web Tokens)** – Autenticación basada en tokens.<br>
+🔹**Celebrate (Joi)** – Validación de esquemas en rutas HTTP.<br>
+🔹**Winston** – Sistema de logging configurable y extensible.<br>
 
-<br><br>
+<br>
 
 Cualquier comentario y/o sugerencia es bienvenido, para poder impulsar y mejorar este y futuros proyectos! 🎯
-<br><br>
