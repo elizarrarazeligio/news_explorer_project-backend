@@ -26,7 +26,7 @@ const { PORT = 3005 } = process.env;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://atnewsexplorer.ignorelist.com",
-  "https://atnewsexplorer.vercel.app/",
+  "https://atnewsexplorer.vercel.app",
 ];
 mongoose.connect("mongodb://localhost:27017/newsdb");
 
